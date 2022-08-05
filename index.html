@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            position: absolute;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            order: 1;
+        }
+        .main{
+            background-color: aqua;
+            width: 120px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.5s linear;
+            /* display: none; */
+        }
+        .main:hover{
+            background-color: yellow;
+        }
+        .text{
+            font-weight: bold;
+        }
+        .img-main{
+            display: none;
+            height: 100vh;
+            animation: hienThi 1.5s linear;
+        }
+        @keyframes hienThi{
+            0% { opacity: 0;}
+            50% { opacity: 0.5;}
+            100% { opacity: 1;}
+        }
+        body{
+            overflow: hidden;
+            position: relative;
+        }
+        section{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url(bg2.jpg);
+            background-position-x: center;
+            background-size: cover;
+        }
+        span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1),0 0 0 2px rgba(255, 255, 255, 1);
+            animation: animate 3s linear infinite;
+        }
+        span::before{
+            content: '';
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, #fff, transparent);
+        }
+        @keyframes animate{
+            0%{
+                transform: rotate(315deg) translateX(0);
+                opacity: 1;
+            }
+            70%{
+                opacity: 1;
+            }
+            100%{
+                transform: rotate(315deg) translateX(-1000px);
+                opacity: 0;
+            }
+        }
+        span:nth-child(1){
+            top: 0;
+            right: 0;
+            left: initial;
+            animation-delay: 0;
+            animation-duration: 1s;
+        }
+        span:nth-child(2){
+            top: 0;
+            right: 88px;
+            left: initial;
+            animation-delay: 0.2s;
+            animation-duration: 3s;
+        }
+        span:nth-child(3){
+            top: 80px;
+            right: 0;
+            left: initial;
+            animation-delay: 0.4s;
+            animation-duration: 2s;
+        }
+        span:nth-child(4){
+            top: 0;
+            right: 180px;
+            left: initial;
+            animation-delay: 0.6s;
+            animation-duration: 1.5s;
+        }
+        span:nth-child(5){
+            top: 0;
+            right: 400px;
+            left: initial;
+            animation-delay: 0.8s;
+            animation-duration: 2.5s;
+        }
+        span:nth-child(6){
+            top: 0;
+            right: 600px;
+            left: initial;
+            animation-delay: 1s;
+            animation-duration: 3s;
+        }
+        span:nth-child(7){
+            top: 300px;
+            right: 0;
+            left: initial;
+            animation-delay: 1.2s;
+            animation-duration:1.75s;
+        }
+        span:nth-child(8){
+            top: 0;
+            right: 700px;
+            left: initial;
+            animation-delay: 1.4s;
+            animation-duration: 1.25s;
+        }
+        span:nth-child(9){
+            top: 0;
+            right: 1000px;
+            left: initial;
+            animation-delay: 0.75s;
+            animation-duration: 2.22s;
+        }
+        span:nth-child(10){
+            top: 0;
+            right: 450px;
+            left: initial;
+            animation-delay: 2.75s;
+            animation-duration: 2.25s;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </section>
+    <div class="container">
+        <div class="main" onclick="OpenImg()">
+            <p class="text">Bấm vào đây</p>
+        </div>
+        <img src="./1.jpg" alt="hình ảnh" class="img-main">
+    </div>
+    
+    <script>
+        
+        function OpenImg(){
+            var button = document.querySelector('.main')
+            var img = document.querySelector('.img-main')
+            button.style.display = "none"
+            img.style.display = "block"
+        }
+    </script>
+</body>
+</html>
