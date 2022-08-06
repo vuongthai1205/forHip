@@ -10,6 +10,7 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
         .container{
             position: absolute;
@@ -42,6 +43,7 @@
             display: none;
             height: 100vh;
             animation: hienThi 1.5s linear;
+            position: relative;
         }
         @keyframes hienThi{
             0% { opacity: 0;}
@@ -52,7 +54,7 @@
             overflow: hidden;
             position: relative;
         }
-        section{
+        .container_1{
             position: absolute;
             top: 0;
             left: 0;
@@ -62,7 +64,7 @@
             background-position-x: center;
             background-size: cover;
         }
-        span{
+        .item{
             position: absolute;
             top: 50%;
             left: 50%;
@@ -73,7 +75,7 @@
             box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1),0 0 0 2px rgba(255, 255, 255, 1);
             animation: animate 3s linear infinite;
         }
-        span::before{
+        .item::before{
             content: '';
             position: absolute;
             transform: translateY(-50%);
@@ -95,96 +97,129 @@
                 opacity: 0;
             }
         }
-        span:nth-child(1){
+        .item:nth-child(1){
             top: 0;
             right: 0;
             left: initial;
             animation-delay: 0;
             animation-duration: 1s;
         }
-        span:nth-child(2){
+        .item:nth-child(2){
             top: 0;
             right: 88px;
             left: initial;
             animation-delay: 0.2s;
             animation-duration: 3s;
         }
-        span:nth-child(3){
+        .item:nth-child(3){
             top: 80px;
             right: 0;
             left: initial;
             animation-delay: 0.4s;
             animation-duration: 2s;
         }
-        span:nth-child(4){
+        .item:nth-child(4){
             top: 0;
             right: 180px;
             left: initial;
             animation-delay: 0.6s;
             animation-duration: 1.5s;
         }
-        span:nth-child(5){
+        .item:nth-child(5){
             top: 0;
             right: 400px;
             left: initial;
             animation-delay: 0.8s;
             animation-duration: 2.5s;
         }
-        span:nth-child(6){
+        .item:nth-child(6){
             top: 0;
             right: 600px;
             left: initial;
             animation-delay: 1s;
             animation-duration: 3s;
         }
-        span:nth-child(7){
+        .item:nth-child(7){
             top: 300px;
             right: 0;
             left: initial;
             animation-delay: 1.2s;
             animation-duration:1.75s;
         }
-        span:nth-child(8){
+        .item:nth-child(8){
             top: 0;
             right: 700px;
             left: initial;
             animation-delay: 1.4s;
             animation-duration: 1.25s;
         }
-        span:nth-child(9){
+        .item:nth-child(9){
             top: 0;
             right: 1000px;
             left: initial;
             animation-delay: 0.75s;
             animation-duration: 2.22s;
         }
-        span:nth-child(10){
+        .item:nth-child(10){
             top: 0;
             right: 450px;
             left: initial;
             animation-delay: 2.75s;
             animation-duration: 2.25s;
         }
+        #slider{
+            width: 100%;
+            object-fit: contain;
+            height: 100%;
+        }
+        .btn{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+        .btn:nth-child(2){
+            top: 50%;
+            left: unset;
+            right: 0;
+        }
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
     </style>
 </head>
 <body>
-    <section>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <section class="container_1">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
     </section>
     <div class="container">
         <div class="main" onclick="OpenImg()">
-            <p class="text">Bấm vào đây</p>
+            <p class="text">Rước Đèn</p>
         </div>
-        <img src="./1.jpg" alt="hình ảnh" class="img-main">
+        <div class="img-main">
+            <img id="slider" src="./1.jpg">
+            <button class="btn" onclick="prev()">&#10095;</button>
+            <button class="btn" onclick="next()">&#10094;</button>
+        </div>
+        
     </div>
     
     <script>
@@ -194,6 +229,32 @@
             var img = document.querySelector('.img-main')
             button.style.display = "none"
             img.style.display = "block"
+        }
+        var images = [
+                    "./1.jpg",
+                    "./2.jpg",
+                    "./3.jpg",
+                    './4.jpg'
+                ];
+        var num = 0;
+
+        function next() {
+            var slider = document.getElementById("slider");
+            num++;
+            if(num >= images.length) {
+                num = 0;
+            }
+            slider.src = images[num];
+        }
+        setInterval(next, 2000)
+
+        function prev() {
+            var slider = document.getElementById("slider");
+            num--;
+            if(num < 0) {
+                num = images.length-1;
+            }
+            slider.src = images[num];
         }
     </script>
 </body>
