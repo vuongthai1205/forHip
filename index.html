@@ -167,33 +167,20 @@
             animation-delay: 2.75s;
             animation-duration: 2.25s;
         }
-        #slider{
+        .slider{
             width: 100%;
             object-fit: contain;
             height: 100%;
+            animation: hienThi 1s linear;
         }
         .btn{
             position: absolute;
             top: 50%;
-            left: 0;
+            left: 100%;
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.1);
             border: none;
             cursor: pointer;
-        }
-        .btn:nth-child(2){
-            top: 50%;
-            left: unset;
-            right: 0;
-        }
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
         }
     </style>
 </head>
@@ -215,9 +202,10 @@
             <p class="text">Rước Đèn</p>
         </div>
         <div class="img-main">
-            <img id="slider" src="./1.jpg">
-            <button class="btn" onclick="prev()">&#10095;</button>
-            <button class="btn" onclick="next()">&#10094;</button>
+            <img class="slider" src="./1.jpg">
+            <img class="slider" src="./2.jpg">
+            <img class="slider" src="./3.jpg">
+            <img class="slider" src="./4.jpg">
         </div>
         
     </div>
@@ -230,32 +218,28 @@
             button.style.display = "none"
             img.style.display = "block"
         }
-        var images = [
-                    "./1.jpg",
-                    "./2.jpg",
-                    "./3.jpg",
-                    './4.jpg'
-                ];
-        var num = 0;
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-        function next() {
-            var slider = document.getElementById("slider");
-            num++;
-            if(num >= images.length) {
-                num = 0;
-            }
-            slider.src = images[num];
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
         }
-        setInterval(next, 2000)
 
-        function prev() {
-            var slider = document.getElementById("slider");
-            num--;
-            if(num < 0) {
-                num = images.length-1;
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slider");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-            slider.src = images[num];
+            slides[slideIndex-1].style.display = "block";
         }
+        function autoSlide(){
+            plusSlides(-1)
+        }
+        setInterval(autoSlide, 3000)
     </script>
 </body>
 </html>
